@@ -1,1 +1,0 @@
-# Lightning-Component-Framework-Specilist
