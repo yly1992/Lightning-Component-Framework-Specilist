@@ -1,0 +1,15 @@
+<aura:component description="BoatSearch" implements="flexipage:availableForAllPageTypes" access="global" controller="BoatSearchResults" >
+
+    <aura:handler name="formsubmit" event="c:formSubmit" action="{!c.onFormSubmit}" />
+
+    <div class="slds-grid_align-center">
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem flexibility="auto" size="12" largeDeviceSize="12" mediumDeviceSize="12" smallDeviceSize="12">
+                <c:BoatSearchForm />
+            </lightning:layoutItem>
+            <lightning:layoutItem flexibility="auto" size="12" largeDeviceSize="12" mediumDeviceSize="12" smallDeviceSize="12">
+                <c:BoatSearchResults aura:id="searchResultsCmp" />
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+</aura:component>

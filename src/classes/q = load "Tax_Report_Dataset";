@@ -1,0 +1,20 @@
+ q = load "Tax_Report_Dataset";
+ q = filter q by 'Status__c' in {{selection(Status_Filter)}};
+ q = filter q by 'Tax_Year__c' in {{selection(Tax_Year_Filter)}};
+ q = filter q by 'Tax_Jurisdiction__c' in {{selection(Jurisdiction_Filter)}};
+ q = filter q by 'Business_Activity__c' in {{selection(Business_Activity_Filter)}};
+ q = filter q by 'Legal_Entity_Controller_Name__c' in {{selection(Controller_Name_Filter)}};
+ q = filter q by 'Country__c' in {{selection(Country_Filter)}};
+ q = group q by ('Tax_Jurisdiction__c','Tax_Year__c');
+ q = foreach q generate 'Tax_Jurisdiction__c' + "~~~" + Tax_Year__c as 'Jurisdiction~~~Year','Tax_Year__c' as 'Tax_Year__c','Tax_Jurisdiction__c' as 'Tax_Jurisdiction__c',sum(q.'Converted_Total_Party_Revenues__c')*100/(({{value(results(Revenue_Rate_All))-0||0}})) as 'avg_Total Revenues (%)';
+ q = filter q by 'Jurisdiction~~~Year' in {{selection(PBT_Headcount_Jurisdiction)}};
+ q = filter q by 'Jurisdiction~~~Year' in {{selection(Headcount_Rate_Jurisdiction)}};
+ q = filter q by 'Jurisdiction~~~Year' in {{selection(Revenue_Jurisdiction)}};
+ q = filter q by 'Jurisdiction~~~Year' in {{selection(Profitability)}};
+ q = filter q by 'Jurisdiction~~~Year' in {{selection(PBT_Jurisdiction)}};
+ q = filter q by 'Jurisdiction~~~Year' in {{selection(Revenue_Headcount_Jurisdiction)}};
+ q = filter q by 'Jurisdiction~~~Year' in {{selection(Revenue_Rate_Jurisdiction)}};
+ q = order q by 'avg_Total Revenues (%)' {{no_quote(value(field(selection(step_relative_order),'sortorder')))}};
+ q = limit q {{no_quote(value(field(selection(step_limit),'limit')))}};
+ 
+ 

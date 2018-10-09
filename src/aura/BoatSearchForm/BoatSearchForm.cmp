@@ -1,0 +1,60 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="BoatFormController" >
+    <aura:attribute name="BoatTypes" type="List" />
+    <aura:handler name="init" value="this" action="{!c.doInit}" />
+    <aura:attribute name="showNewButton" type="Boolean" default="false" />
+
+    <aura:registerEvent name="formsubmit" type="c:formSubmit"/>
+
+    <article class="slds-card bottom-space">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <p>Find a boat</p>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-grid slds-gutters slds-grid_align-center">
+                <lightning:layout horizontalAlign="center">
+                    <lightning:layoutitem class="slds-grid_vertical-align-center slds-p-horizontal_small">
+                        <lightning:select aura:id="filterSelect" label="" variant="label-hidden" >
+                            <option label="All Types" />
+                            <aura:iteration items="{!v.BoatTypes}" var="type">
+                                <option value="{!type.value}" label="{!type.label}"></option>            
+                            </aura:iteration>
+                        </lightning:select>
+                    </lightning:layoutitem>
+                    <lightning:layoutitem class="slds-grid_vertical-align-center">
+                        <lightning:button class="slds-button" variant="brand" label="Search" onclick="{! c.onFormSubmit }" />
+                    </lightning:layoutitem>
+                    <aura:if isTrue="{!v.showNewButton}">
+                    <lightning:layoutitem class="slds-grid_vertical-align-center">
+                        <lightning:button class="slds-button" variant="neutral" label="New" onclick="{! c.handleNewClick }" />
+                    </lightning:layoutitem>
+                    </aura:if>
+                </lightning:layout>
+            </div>
+        </div>
+        <footer class="slds-card__footer">
+            <div style="padding-bottom: 2%">
+                <span><label style="float:left">label1</label></span>
+                <span>
+
+        <div style="float:right">
+            <span style="margin:50px">
+            <ui:outputCheckbox value="true" class="align-left" />
+            </span>
+             <span style="margin:5px">
+        <lightning:button label="Browse" onclick="" variant="brand" class="align-sed" />
+             </span>
+
+        </div>
+        </span>
+
+            </div>
+
+
+        </footer>
+    </article>
+
+
+
+</aura:component>

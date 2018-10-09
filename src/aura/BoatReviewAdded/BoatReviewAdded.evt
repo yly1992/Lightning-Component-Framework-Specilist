@@ -1,0 +1,7 @@
+<!--
+ - Created by liyuanyan on 3/4/18.
+ -->
+
+<aura:event type="Component" description="Event template">
+    <aura:attribute name="BoatReviewAdded" type="Boat__c"/>
+</aura:event>

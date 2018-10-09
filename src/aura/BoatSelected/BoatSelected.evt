@@ -1,0 +1,7 @@
+<!--
+ - Created by liyuanyan on 2/18/18.
+ -->
+
+<aura:event type="APPLICATION" description="BoatSelected">
+    <aura:attribute name="boat" type="Boat__c" />
+</aura:event>
